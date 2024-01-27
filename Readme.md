@@ -67,7 +67,15 @@ You will find some useful commands line on the folder :
 
 
 ## 🚀 About Me
-I'm a full stack developer...
+👋 I'm a State Engineer in Information Technology and Communication Networks, currently serving as a DevOps Engineer at Société Générale Africa Business Services (SGABS). I'm passionate about automating and streamlining deployment processes for infrastructure and applications, and I'm excited to share my journey and ongoing projects with you.
+
+🌱 Currently, I'm deeply engaged in a comprehensive pipeline project designed to automate and facilitate the deployment of both infrastructure and applications. Leveraging a combination of Ansible, Jenkins, and Terraform, our team is crafting a robust system to streamline and expedite the deployment processes within our company. This initiative aims to enhance efficiency and scalability while reducing manual intervention in the deployment lifecycle.
+
+Previously, one of my significant endeavors involved crafting solutions to automate the creation and configuration of a Kubernetes cluster within the Promise environment. This project, set within an environment lacking an internet connection (For security measure, the environment can't get acces to the internet), posed unique challenges that I successfully navigated, further refining my skills in automation and orchestration.
+
+I've also been actively involved in developing Ansible playbooks that automate the setup and configuration of diverse servers and packages within our infrastructure, harnessing the capabilities of the ManageIQ platform. This hands-on experience has bolstered my expertise in infrastructure automation and orchestration.
+
+💡 I am continually driven by a thirst for learning and a passion for enhancing my expertise across various technological domains. Thriving in dynamic environments, I actively seek opportunities to contribute to innovative projects. If you have any collaboration ideas or opportunities aligned with my interests, I'm eager to explore and engage.
 
 
 ## 🔗 Links
