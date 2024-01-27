@@ -18,7 +18,7 @@ This script automates the setup process for a Kubernetes cluster on Ubuntu 20.04
 Download the `install.sh` script from this repository.
 
 ```bash
-wget https://raw.githubusercontent.com/your-username/your-repo/master/install.sh
+wget https://raw.githubusercontent.com/anouarharrou/K8s-Cluster-Setup-Script-Ubuntu/main/install-k8s.sh
 ```
 
 ### Step 2: Make the Script Executable
@@ -26,14 +26,14 @@ wget https://raw.githubusercontent.com/your-username/your-repo/master/install.sh
 Grant execute permissions to the script.
 
 ```bash
-chmod +x install.sh
+chmod +x install-k8s.sh
 ```
 ### Step 3: Run the Script
 
 Execute the script with root or sudo privileges.
 
 ```bash
-sudo ./install.sh
+sudo ./install-k8s.sh
 ```
 
 ## Features
