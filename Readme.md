@@ -61,8 +61,8 @@ Kubernetes Architecture
 You will find some useful commands line on the folder :
 
 ```bash
-./cmd/workingwithyourcluster.sh
-./cmd/deployingapplications.sh
+cmd/workingwithyourcluster.sh
+cmd/deployingapplications.sh
 ```
 
 

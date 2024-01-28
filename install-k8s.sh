@@ -1,5 +1,4 @@
 #!/bin/bash
-# common.sh
 # copy this script and run in all master and worker nodes
 #) pre-requisites
 #1) Ubuntu 20.04 LTS
@@ -36,13 +35,19 @@ sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 hostnamectl set-hostname "master-node"
 exec bash
 
-#Update the /etc/hosts File for Hostname Resolution
-#Note: You can skip this step if you have DNS server in your environment.
-vi /etc/hosts
-
-#Add the following lines to the end of the file:
-10.0.0.2 master-node  
+entries="
+10.0.0.2 master-node
 10.0.0.3 worker-node1
+"
+
+# Check if the entries already exist in /etc/hosts
+if grep -Fxq "$entries" /etc/hosts; then
+  echo "Entries already exist in /etc/hosts. No changes made."
+else
+  # Append entries to /etc/hosts
+  echo -e "$entries" | sudo tee -a /etc/hosts
+  echo "Entries added to /etc/hosts."
+fi
 
 #3) Add  kernel settings & Enable IP tables(CNI Prerequisites)
 
