@@ -23,6 +23,14 @@ wget https://raw.githubusercontent.com/anouarharrou/K8s-Cluster-Setup-Script-Ubu
 
 ### Step 2: Make the Script Executable
 
+Add the following the /etc/hosts file and save it.
+```bash
+vi /etc/hosts
+..
+..
+10.0.0.2 master-node
+10.0.0.3 worker-node1
+```
 Grant execute permissions to the script.
 
 ```bash

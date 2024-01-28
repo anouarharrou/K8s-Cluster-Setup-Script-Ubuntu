@@ -26,23 +26,6 @@ sudo su
 swapoff -a
 sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 
-# Set up hostnames
-hostnamectl set-hostname "master-node"
-exec bash
-
-entries="
-10.0.0.2 master-node
-10.0.0.3 worker-node1
-"
-
-# Check if the entries already exist in /etc/hosts
-if grep -Fxq "$entries" /etc/hosts; then
-  echo "Entries already exist in /etc/hosts. No changes made."
-else
-  # Append entries to /etc/hosts
-  echo -e "$entries" | sudo tee -a /etc/hosts
-  echo "Entries added to /etc/hosts."
-fi
 
 # Add kernel settings & Enable IP tables(CNI Prerequisites)
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
