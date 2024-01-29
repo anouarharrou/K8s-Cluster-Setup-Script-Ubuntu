@@ -19,9 +19,6 @@ check_docker_containerd() {
 # Verify if a Kubernetes cluster exists
 check_k8s_cluster
 
-# Switch to root user
-sudo su
-
 # Disable swap & add kernel settings
 swapoff -a
 sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
