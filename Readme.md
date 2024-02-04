@@ -4,11 +4,11 @@
 
 This script automates the setup process for a Kubernetes cluster on Ubuntu 20.04 LTS, One Master and one Node. It covers the installation of necessary dependencies, kernel settings, and components such as containerd, kubeadm, kubelet, and kubectl.
 
-## Prerequisites
+## Prerequisites ✅
 
-    1. Ubuntu 20.04 LTS
-    2. Internet connection
-    3. Disable swap
+    1. 🐧 Ubuntu 20.04 LTS
+    2. 🌐 Internet connection
+    3. ❌ Disable swap
 
 ## Usage
 
@@ -25,20 +25,20 @@ wget https://raw.githubusercontent.com/anouarharrou/K8s-Cluster-Setup-Script-Ubu
 
 Add the following the /etc/hosts file and save it.
 ```bash
-vi /etc/hosts
+vi /etc/hosts 📁
 ..
 ..
 10.0.0.2 master-node
 10.0.0.3 worker-node1
 ```
-Grant execute permissions to the script.
+Grant execute permissions to the script. 
 
 ```bash
 chmod +x install-k8s.sh
 ```
 ### Step 3: Run the Script
 
-Execute the script with root or sudo privileges.
+Execute the script with root or sudo privileges. 😎
 
 ```bash
 sudo ./install-k8s.sh
@@ -89,6 +89,22 @@ I've also been actively involved in developing Ansible playbooks that automate t
 ## 🔗 Links
 
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/anouarharrou/)
+
+
+## Supported Platforms
+
+- 🌐 Ubuntu Server
+- 🐧 CentOS 7
+
+## License
+
+This project is licensed under the GNU AFFERO GENERAL PUBLIC LICENSE - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Inspired by the need for a quick and automated setup of Kubernetes Cluster.
+
+**Note:** Always ensure your system meets the specified requirements in terms of memory, storage, and CPU before running the script on a production environment. 🚀
 
 ## Contributing
 

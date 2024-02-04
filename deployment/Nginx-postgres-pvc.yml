@@ -1,0 +1,130 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: shared-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres-container
+          image: postgres:latest
+          resources:
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+            requests:
+              cpu: "0.5"
+              memory: "500Mi"
+          env:
+            - name: POSTGRES_DB
+              value: mydb
+            - name: POSTGRES_USER
+              value: cloud-app
+            - name: POSTGRES_PASSWORD
+              value: password
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: postgres-storage
+              mountPath: /var/lib/postgresql/data
+        
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: shared-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+spec:
+  selector:
+    app: postgres
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+  type: NodePort
+
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx:latest
+          resources:
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+            requests:
+              cpu: "0.5"
+              memory: "500Mi"
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: nginx-storage
+              mountPath: /usr/share/nginx/html
+
+      volumes:
+        - name: nginx-storage
+          persistentVolumeClaim:
+            claimName: shared-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 10000  # Adjusted port number to 10000
+      targetPort: 80
+
+# kubectl get service to get the ip address of the services and port number
+# kubectl get pods <pod-name> -o=jsonpath='{.spec.containers[*].name}' | tr -s '[[:space:]]' '\n'
+# kubectl get pods <pod-name> -o=jsonpath='{.spec.containers[*].image}' | tr -s '[[:space:]]' '\n'
+# kubectl get pods <pod-name> -o=jsonpath='{.spec.containers[*].resources}' | tr -s '[[:space:]]' '\n'
+# kubectl get pods <pod-name> -o=jsonpath='{.spec.containers[*].ports}' | tr -s '[[:space:]]' '\n'
+
+#kubectl exec -it <pod-name> -c <container-name> -- /bin/bash
+#kubectl exec -it <pod-name> -c <container-name> -- psql -U <username> -d <database-name> 
