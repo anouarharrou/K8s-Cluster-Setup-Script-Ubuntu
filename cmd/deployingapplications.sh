@@ -19,7 +19,7 @@ kubectl get pods -o wide
 
 #Remember, k8s is a container orchestrator and it's starting up containers on Nodes.
 #Open a second terminal and ssh into the node that hello-world pod is running on.
-ssh aen@c1-node[XX]
+ssh user@node[XX]
 
 
 #When containerd is your container runtime, use crictl to get a listing of the containers running
@@ -67,13 +67,6 @@ kubectl describe replicaset hello-world | more
 #In Events, notice how the Pod is scheduled, the container image is pulled, 
 #and then the container is created and then started.
 kubectl describe pod hello-world-[tab][tab] | more
-
-
-#For a deep dive into Deployments check out 'Managing Kubernetes Controllers and Deployments'
-#https://www.pluralsight.com/courses/managing-kubernetes-controllers-deployments
-
-
-
 
 
 #Expose the Deployment as a Service. This will create a Service for the Deployment
