@@ -61,10 +61,6 @@ spec:
         - name: postgres-storage
           persistentVolumeClaim:
             claimName: shared-pvc
-        - name: secret-volume
-          secret:
-            secretName: postgres-secret
-
 ---
 apiVersion: v1
 kind: Secret

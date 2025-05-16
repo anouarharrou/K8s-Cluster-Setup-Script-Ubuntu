@@ -33,14 +33,21 @@ spec:
               cpu: "1"
               memory: "1Gi"
             requests:
-              cpu: "0.5"
+              cpu: "1"
+              memory: "1Gi"
           ports:
             - containerPort: 80
           env:
-            - name: PGADMIN_DEFAULT_EMAIL
-              value: admin@example.com
-            - name: PGADMIN_DEFAULT_PASSWORD
-              value: admin
+          - name: PGADMIN_DEFAULT_EMAIL
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secret
+                key: PGADMIN_DEFAULT_EMAIL
+          - name: PGADMIN_DEFAULT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secret
+                key: PGADMIN_DEFAULT_PASSWORD
           volumeMounts:
             - name: pgadmin-storage
               mountPath: /var/lib/pgadmin
@@ -49,6 +56,15 @@ spec:
         - name: pgadmin-storage
           persistentVolumeClaim:
             claimName: pgadmin-pvc
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: postgres-secret
+data:
+  PGADMIN_DEFAULT_EMAIL: YWRtaW5AcGdhZG1pbi5jb20=  # base64 encoded value of 'admin@pgadmin.com'
+  PGADMIN_DEFAULT_PASSWORD: UGFzc0B3b3Jk  # base64 encoded value of 'Pass@word'
 
 ---
 
